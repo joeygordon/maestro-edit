@@ -2,15 +2,35 @@
 
 export default shapes = [
   {
+    id: 0,
+    title: 'Ramp Up',
+  },
+  {
     id: 1,
-    title: 'high',
+    title: 'Ramp Down',
   },
   {
     id: 2,
-    title: 'low',
+    title: 'High',
   },
   {
     id: 3,
-    title: 'square',
-  }
+    title: 'Low',
+  },
+  {
+    id: 4,
+    title: 'Triangle Up',
+  },
+  {
+    id: 5,
+    title: 'Triangle Dowm',
+  },
+  {
+    id: 6,
+    title: 'Square',
+  },
+  {
+    id: 7,
+    title: 'Random',
+  },
 ]
