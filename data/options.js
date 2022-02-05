@@ -1,10 +1,10 @@
-export default options = [
+export default [
   {
     id: 0,
-    title: 'Smooth',
+    title: "Smooth",
   },
   {
     id: 1,
-    title: 'Bipolar'
+    title: "Bipolar",
   },
-]
+];

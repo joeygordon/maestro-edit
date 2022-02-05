@@ -1,4 +1,4 @@
-export default defaultSettings = {
+export default {
   version: 2,
   attenuationShift: 0,
   ratio: 2,
@@ -11,4 +11,4 @@ export default defaultSettings = {
   stepShape: 6,
   stepSmooth: -1,
   stepBipolar: -1,
-}
+};

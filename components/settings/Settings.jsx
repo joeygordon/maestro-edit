@@ -1,7 +1,7 @@
-import SettingsRow from "./SettingsRow"
+import SettingsRow from "./SettingsRow";
 
 const Settings = ({ channelSettings }) => {
-  return <SettingsRow channelSettings={channelSettings} />
-}
+  return <SettingsRow channelSettings={channelSettings} />;
+};
 
-export default Settings
+export default Settings;

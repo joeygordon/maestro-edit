@@ -1,5 +1,7 @@
-const SettingsRow = ({ channelSettings }) => {
-  return <>Settings Row</>
-}
+import styled from "styled-components";
 
-export default SettingsRow
+const SettingsRow = ({ channelSettings }) => {
+  return <>Settings Row</>;
+};
+
+export default SettingsRow;

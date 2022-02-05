@@ -1,4 +1,4 @@
-export default ratios = [
+export default [
   {
     id: 0,
     title: "1/2",
@@ -79,4 +79,4 @@ export default ratios = [
     id: 19,
     title: "1/32 slow t",
   },
-]
+];

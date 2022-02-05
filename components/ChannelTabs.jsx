@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const ChannelTabsList = styled.ul`
   display: flex;
@@ -30,7 +30,7 @@ const ChannelTabsList = styled.ul`
       background: #cccccc;
     }
   }
-`
+`;
 
 const ChannelTabs = ({ handleSelectTab, activeTab }) => {
   return (
@@ -38,7 +38,7 @@ const ChannelTabs = ({ handleSelectTab, activeTab }) => {
       <li>
         <button
           type="button"
-          className={activeTab === 1 ? 'active' : ''}
+          className={activeTab === 1 ? "active" : ""}
           onClick={() => handleSelectTab(1)}
         >
           I
@@ -47,7 +47,7 @@ const ChannelTabs = ({ handleSelectTab, activeTab }) => {
       <li>
         <button
           type="button"
-          className={activeTab === 2 ? 'active' : ''}
+          className={activeTab === 2 ? "active" : ""}
           onClick={() => handleSelectTab(2)}
         >
           II
@@ -56,7 +56,7 @@ const ChannelTabs = ({ handleSelectTab, activeTab }) => {
       <li>
         <button
           type="button"
-          className={activeTab === 3 ? 'active' : ''}
+          className={activeTab === 3 ? "active" : ""}
           onClick={() => handleSelectTab(3)}
         >
           III
@@ -65,7 +65,7 @@ const ChannelTabs = ({ handleSelectTab, activeTab }) => {
       <li>
         <button
           type="button"
-          className={activeTab === 4 ? 'active' : ''}
+          className={activeTab === 4 ? "active" : ""}
           onClick={() => handleSelectTab(4)}
         >
           IV
@@ -74,7 +74,7 @@ const ChannelTabs = ({ handleSelectTab, activeTab }) => {
       <li>
         <button
           type="button"
-          className={activeTab === 5 ? 'active' : ''}
+          className={activeTab === 5 ? "active" : ""}
           onClick={() => handleSelectTab(5)}
         >
           V
@@ -83,14 +83,14 @@ const ChannelTabs = ({ handleSelectTab, activeTab }) => {
       <li>
         <button
           type="button"
-          className={activeTab === 6 ? 'active' : ''}
+          className={activeTab === 6 ? "active" : ""}
           onClick={() => handleSelectTab(6)}
         >
           VI
         </button>
       </li>
     </ChannelTabsList>
-  )
-}
+  );
+};
 
-export default ChannelTabs
+export default ChannelTabs;
