@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ChannelTabsList = styled.ul`
   display: flex;
@@ -37,54 +37,54 @@ const ChannelTabs = ({ handleSelectTab, activeTab }) => {
     <ChannelTabsList>
       <li>
         <button
-          type="button"
-          className={activeTab === 1 ? "active" : ""}
-          onClick={() => handleSelectTab(1)}
+          type='button'
+          className={activeTab === 0 ? 'active' : ''}
+          onClick={() => handleSelectTab(0)}
         >
           I
         </button>
       </li>
       <li>
         <button
-          type="button"
-          className={activeTab === 2 ? "active" : ""}
-          onClick={() => handleSelectTab(2)}
+          type='button'
+          className={activeTab === 1 ? 'active' : ''}
+          onClick={() => handleSelectTab(1)}
         >
           II
         </button>
       </li>
       <li>
         <button
-          type="button"
-          className={activeTab === 3 ? "active" : ""}
-          onClick={() => handleSelectTab(3)}
+          type='button'
+          className={activeTab === 2 ? 'active' : ''}
+          onClick={() => handleSelectTab(2)}
         >
           III
         </button>
       </li>
       <li>
         <button
-          type="button"
-          className={activeTab === 4 ? "active" : ""}
-          onClick={() => handleSelectTab(4)}
+          type='button'
+          className={activeTab === 3 ? 'active' : ''}
+          onClick={() => handleSelectTab(3)}
         >
           IV
         </button>
       </li>
       <li>
         <button
-          type="button"
-          className={activeTab === 5 ? "active" : ""}
-          onClick={() => handleSelectTab(5)}
+          type='button'
+          className={activeTab === 4 ? 'active' : ''}
+          onClick={() => handleSelectTab(4)}
         >
           V
         </button>
       </li>
       <li>
         <button
-          type="button"
-          className={activeTab === 6 ? "active" : ""}
-          onClick={() => handleSelectTab(6)}
+          type='button'
+          className={activeTab === 5 ? 'active' : ''}
+          onClick={() => handleSelectTab(5)}
         >
           VI
         </button>

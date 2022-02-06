@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Head from "next/head";
-import { fromJS } from "immutable";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Head from 'next/head';
+import { fromJS } from 'immutable';
 
-import ChannelTabs from "../components/ChannelTabs";
-import Settings from "../components/settings/Settings";
+import ChannelTabs from '../components/ChannelTabs';
+import Settings from '../components/settings/Settings';
 
-import defaultSettings from "../data/defaultSettings";
+import defaultSettings from '../data/defaultSettings';
 
 const Editor = () => {
   const defaults = fromJS({
@@ -18,32 +18,44 @@ const Editor = () => {
     5: defaultSettings,
   });
 
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
   const [currentSettings, setCurrentSettings] = useState(defaults);
 
   // how to update a thing
-  // const newSettings = defaults.setIn(['1', 'randomSeed'], 'joey rules');
-  // console.log('newOne', newSettings);
+  // useEffect(() => {
+  //   const newSettings = currentSettings.setIn(
+  //     ['1', 'randomSeed'],
+  //     'joey rules'
+  //   );
+  //   setCurrentSettings(newSettings);
+  // }, [currentSettings]);
 
   const handleSelectTab = (tab) => {
     setActiveTab(tab);
   };
 
-  const handleSettingsUpdate = (updatedSettings) => {
-    setCurrentSettings(defaults);
+  const handleSettingsUpdate = (setting, value) => {
+    const newSettings = currentSettings.setIn(
+      [activeTab.toString(), setting],
+      value
+    );
+    setCurrentSettings(newSettings);
   };
 
   return (
     <>
       <Head>
         <title>Maestro Edit</title>
-        <meta name="description" content="Acid Rain Maestro editor" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='description' content='Acid Rain Maestro editor' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <ChannelTabs handleSelectTab={handleSelectTab} activeTab={activeTab} />
 
-      <Settings channelSettings={currentSettings} activeChannel={activeTab} />
+      <Settings
+        handleSettingsUpdate={handleSettingsUpdate}
+        channelSettings={currentSettings.getIn([activeTab.toString()]).toJS()}
+      />
     </>
   );
 };

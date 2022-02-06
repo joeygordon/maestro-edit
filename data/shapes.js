@@ -1,36 +1,37 @@
 // mocked data. gotta make it real eventually
-
-export default [
+const shapes = [
   {
     id: 0,
-    title: "Ramp Up",
+    title: 'Ramp Up',
   },
   {
     id: 1,
-    title: "Ramp Down",
+    title: 'Ramp Down',
   },
   {
     id: 2,
-    title: "High",
+    title: 'High',
   },
   {
     id: 3,
-    title: "Low",
+    title: 'Low',
   },
   {
     id: 4,
-    title: "Triangle Up",
+    title: 'Triangle Up',
   },
   {
     id: 5,
-    title: "Triangle Dowm",
+    title: 'Triangle Dowm',
   },
   {
     id: 6,
-    title: "Square",
+    title: 'Square',
   },
   {
     id: 7,
-    title: "Random",
+    title: 'Random',
   },
 ];
+
+export default shapes;
