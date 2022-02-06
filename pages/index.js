@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { fromJS } from 'immutable';
-
 import ChannelTabs from '../components/ChannelTabs';
 import Settings from '../components/settings/Settings';
+import GlobalSettings from '../components/GlobalSettings';
+import ExportButton from '../components/export/ExportButton';
 
 import defaultSettings from '../data/defaultSettings';
 
 const Editor = () => {
   const defaults = fromJS({
+    global: { paused: false, bpm: 120, version: 2 },
     0: defaultSettings,
     1: defaultSettings,
     2: defaultSettings,
@@ -42,6 +44,11 @@ const Editor = () => {
     setCurrentSettings(newSettings);
   };
 
+  const handleGlobalSettingsUpdate = (setting, value) => {
+    const newSettings = currentSettings.setIn(['global', setting], value);
+    setCurrentSettings(newSettings);
+  };
+
   return (
     <>
       <Head>
@@ -50,12 +57,23 @@ const Editor = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
+      <GlobalSettings
+        settings={currentSettings.getIn(['global']).toJS()}
+        handleUpdate={handleGlobalSettingsUpdate}
+      />
+
+      <hr />
+
       <ChannelTabs handleSelectTab={handleSelectTab} activeTab={activeTab} />
 
       <Settings
         handleSettingsUpdate={handleSettingsUpdate}
         channelSettings={currentSettings.getIn([activeTab.toString()]).toJS()}
       />
+
+      <hr />
+
+      <ExportButton settings={currentSettings} />
     </>
   );
 };

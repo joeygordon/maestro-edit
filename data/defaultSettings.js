@@ -2,7 +2,7 @@ const defaultSettings = {
   version: 2,
   attenuationShift: 0,
   ratio: 2,
-  mute: 1,
+  mute: 0,
   bipolar: 0,
   smooth: 0,
   randomSeed: 1782010910,

@@ -1,5 +1,9 @@
 const ratios = [
   {
+    id: -1,
+    title: 'Default',
+  },
+  {
     id: 0,
     title: '1/2',
   },
