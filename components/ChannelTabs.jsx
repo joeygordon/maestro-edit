@@ -8,26 +8,28 @@ const ChannelTabsList = styled.ul`
   gap: 8px;
 
   li {
-    flex-grow: 1;
+    flex-grow: 0;
     list-style: none;
   }
 
   button {
-    width: 100%;
+    width: 40px;
+    height: 40px;
     border: none;
-    border-radius: 4px;
-    background: #eeeeee;
-    padding: 3px;
+    border-radius: 50%;
+    background: #666666;
+    font-style: italic;
     text-align: center;
     font-size: 1em;
     cursor: pointer;
+    transition: 0.25s;
 
     &:hover {
       background: #dddddd;
     }
 
     &.active {
-      background: #cccccc;
+      background: #ffffff;
     }
   }
 `;

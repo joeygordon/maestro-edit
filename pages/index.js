@@ -9,6 +9,15 @@ import ExportButton from '../components/export/ExportButton';
 
 import defaultSettings from '../data/defaultSettings';
 
+const GlobalContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
+  margin-bottom: 2em;
+  border-bottom: 1px solid #454545;
+  border-top: 1px solid #454545;
+`;
+
 const Editor = () => {
   const defaults = fromJS({
     global: { paused: false, bpm: 120, version: 2 },
@@ -22,15 +31,6 @@ const Editor = () => {
 
   const [activeTab, setActiveTab] = useState(0);
   const [currentSettings, setCurrentSettings] = useState(defaults);
-
-  // how to update a thing
-  // useEffect(() => {
-  //   const newSettings = currentSettings.setIn(
-  //     ['1', 'randomSeed'],
-  //     'joey rules'
-  //   );
-  //   setCurrentSettings(newSettings);
-  // }, [currentSettings]);
 
   const handleSelectTab = (tab) => {
     setActiveTab(tab);
@@ -57,12 +57,14 @@ const Editor = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <GlobalSettings
-        settings={currentSettings.getIn(['global']).toJS()}
-        handleUpdate={handleGlobalSettingsUpdate}
-      />
+      <GlobalContainer>
+        <GlobalSettings
+          settings={currentSettings.getIn(['global']).toJS()}
+          handleUpdate={handleGlobalSettingsUpdate}
+        />
 
-      <hr />
+        <ExportButton settings={currentSettings} />
+      </GlobalContainer>
 
       <ChannelTabs handleSelectTab={handleSelectTab} activeTab={activeTab} />
 
@@ -70,10 +72,6 @@ const Editor = () => {
         handleSettingsUpdate={handleSettingsUpdate}
         channelSettings={currentSettings.getIn([activeTab.toString()]).toJS()}
       />
-
-      <hr />
-
-      <ExportButton settings={currentSettings} />
     </>
   );
 };

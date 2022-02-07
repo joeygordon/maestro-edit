@@ -1,4 +1,21 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
+import styled from 'styled-components';
+
+const GlobalSettingsContainer = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const BPMInput = styled.input`
+  font-size: 1em;
+  margin-right: 0.3em;
+`;
 
 const GlobalSettings = ({ settings, handleUpdate }) => {
   const [bpm, setBpm] = useState(settings.bpm);
@@ -9,10 +26,9 @@ const GlobalSettings = ({ settings, handleUpdate }) => {
   };
 
   return (
-    <ul>
-      <li>
-        <label htmlFor='bpm'>BPM</label>
-        <input
+    <GlobalSettingsContainer>
+      <div>
+        <BPMInput
           type='number'
           id='bpm'
           value={bpm}
@@ -20,17 +36,19 @@ const GlobalSettings = ({ settings, handleUpdate }) => {
           max='350'
           onChange={(e) => handleBPMChange(e.target.value)}
         />
-      </li>
+        <label htmlFor='bpm'>BPM</label>
+      </div>
 
-      <li>
-        <label htmlFor='paused'>Pause</label>
+      <div>
         <input
+          id='paused'
           type='checkbox'
           checked={settings.checked}
           onChange={(e) => handleUpdate('paused', e.target.checked)}
         />
-      </li>
-    </ul>
+        <label htmlFor='paused'>Pause</label>
+      </div>
+    </GlobalSettingsContainer>
   );
 };
 
