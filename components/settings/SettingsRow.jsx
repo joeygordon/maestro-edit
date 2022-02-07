@@ -7,31 +7,10 @@ const RowContainer = styled.div`
   background: #292929;
   border-bottom: 3px solid #666666;
   padding: 1em;
+  margin-bottom: 2em;
 `;
 
-const AddChainButton = styled.button`
-  display: block;
-  border: none;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  padding: 0;
-  margin: 1rem auto;
-  font-size: 2em;
-  background: #666666;
-  color: #ffffff;
-  line-height: 35px;
-  cursor: pointer;
-
-  &:before {
-    content: '';
-    display: inline-block;
-    height: 40px;
-    vertical-align: middle;
-  }
-`;
-
-const SettingsRow = ({ channelSettings, handleSettingsUpdate, chainIndex }) => {
+const SettingsRow = ({ channelSettings, handleSettingsUpdate }) => {
   const [attenuationShift, setAttenuationShift] = useState(
     channelSettings['attenuationShift']
   );
@@ -69,114 +48,110 @@ const SettingsRow = ({ channelSettings, handleSettingsUpdate, chainIndex }) => {
   );
 
   return (
-    <>
-      <RowContainer>
-        <input
-          type='checkbox'
-          id='mute'
-          checked={channelSettings['mute'] === 1 ? true : false}
-          onChange={(cb) => handleUpdate('mute', cb.target.checked ? 1 : 0)}
-        />
-        <label htmlFor='mute'>Mute</label>
+    <RowContainer>
+      <input
+        type='checkbox'
+        id='mute'
+        checked={channelSettings['mute'] === 1 ? true : false}
+        onChange={(cb) => handleUpdate('mute', cb.target.checked ? 1 : 0)}
+      />
+      <label htmlFor='mute'>Mute</label>
 
-        <input
-          type='checkbox'
-          id='smooth'
-          checked={channelSettings['smooth'] === 1 ? true : false}
-          onChange={(cb) => handleUpdate('smooth', cb.target.checked ? 1 : 0)}
-        />
-        <label htmlFor='smooth'>Smooth</label>
+      <input
+        type='checkbox'
+        id='smooth'
+        checked={channelSettings['smooth'] === 1 ? true : false}
+        onChange={(cb) => handleUpdate('smooth', cb.target.checked ? 1 : 0)}
+      />
+      <label htmlFor='smooth'>Smooth</label>
 
-        <input
-          type='checkbox'
-          id='bipolar'
-          checked={channelSettings['bipolar'] === 1 ? true : false}
-          onChange={(cb) => handleUpdate('bipolar', cb.target.checked ? 1 : 0)}
-        />
-        <label htmlFor='bipolar'>Bipolar</label>
+      <input
+        type='checkbox'
+        id='bipolar'
+        checked={channelSettings['bipolar'] === 1 ? true : false}
+        onChange={(cb) => handleUpdate('bipolar', cb.target.checked ? 1 : 0)}
+      />
+      <label htmlFor='bipolar'>Bipolar</label>
 
-        <hr />
+      <hr />
 
-        <input
-          type='radio'
-          id='shape-0'
-          name='shape'
-          value='0'
-          checked={channelSettings['stepShape'] === 0}
-          onChange={(e) => handleUpdate('stepShape', 0)}
-        />
-        <label htmlFor='shape-0'>Ramp Up</label>
-        <input
-          type='radio'
-          id='shape-1'
-          name='shape'
-          value='1'
-          checked={channelSettings['stepShape'] === 1}
-          onChange={(e) => handleUpdate('stepShape', 1)}
-        />
-        <label htmlFor='shape-1'>Ramp Down</label>
-        <input
-          type='radio'
-          id='shape-2'
-          name='shape'
-          value='2'
-          checked={channelSettings['stepShape'] === 2}
-          onChange={(e) => handleUpdate('stepShape', 2)}
-        />
-        <label htmlFor='shape-2'>High</label>
-        <input
-          type='radio'
-          id='shape-3'
-          name='shape'
-          value='3'
-          checked={channelSettings['stepShape'] === 3}
-          onChange={(e) => handleUpdate('stepShape', 3)}
-        />
-        <label htmlFor='shape-3'>Low</label>
-        <input
-          type='radio'
-          id='shape-4'
-          name='shape'
-          value='4'
-          checked={channelSettings['stepShape'] === 4}
-          onChange={(e) => handleUpdate('stepShape', 4)}
-        />
-        <label htmlFor='shape-4'>Triangle Up</label>
-        <input
-          type='radio'
-          id='shape-5'
-          name='shape'
-          value='5'
-          checked={channelSettings['stepShape'] === 5}
-          onChange={(e) => handleUpdate('stepShape', 5)}
-        />
-        <label htmlFor='shape-5'>Triangle Down</label>
-        <input
-          type='radio'
-          id='shape-6'
-          name='shape'
-          value='6'
-          checked={channelSettings['stepShape'] === 6}
-          onChange={(e) => handleUpdate('stepShape', 6)}
-        />
-        <label htmlFor='shape-6'>Square</label>
-        <input
-          type='radio'
-          id='shape-7'
-          name='shape'
-          value='7'
-          checked={channelSettings['stepShape'] === 7}
-          onChange={(e) => handleUpdate('stepShape', 7)}
-        />
-        <label htmlFor='shape-7'>Random</label>
+      <input
+        type='radio'
+        id='shape-0'
+        name='shape'
+        value='0'
+        checked={channelSettings['stepShape'] === 0}
+        onChange={(e) => handleUpdate('stepShape', 0)}
+      />
+      <label htmlFor='shape-0'>Ramp Up</label>
+      <input
+        type='radio'
+        id='shape-1'
+        name='shape'
+        value='1'
+        checked={channelSettings['stepShape'] === 1}
+        onChange={(e) => handleUpdate('stepShape', 1)}
+      />
+      <label htmlFor='shape-1'>Ramp Down</label>
+      <input
+        type='radio'
+        id='shape-2'
+        name='shape'
+        value='2'
+        checked={channelSettings['stepShape'] === 2}
+        onChange={(e) => handleUpdate('stepShape', 2)}
+      />
+      <label htmlFor='shape-2'>High</label>
+      <input
+        type='radio'
+        id='shape-3'
+        name='shape'
+        value='3'
+        checked={channelSettings['stepShape'] === 3}
+        onChange={(e) => handleUpdate('stepShape', 3)}
+      />
+      <label htmlFor='shape-3'>Low</label>
+      <input
+        type='radio'
+        id='shape-4'
+        name='shape'
+        value='4'
+        checked={channelSettings['stepShape'] === 4}
+        onChange={(e) => handleUpdate('stepShape', 4)}
+      />
+      <label htmlFor='shape-4'>Triangle Up</label>
+      <input
+        type='radio'
+        id='shape-5'
+        name='shape'
+        value='5'
+        checked={channelSettings['stepShape'] === 5}
+        onChange={(e) => handleUpdate('stepShape', 5)}
+      />
+      <label htmlFor='shape-5'>Triangle Down</label>
+      <input
+        type='radio'
+        id='shape-6'
+        name='shape'
+        value='6'
+        checked={channelSettings['stepShape'] === 6}
+        onChange={(e) => handleUpdate('stepShape', 6)}
+      />
+      <label htmlFor='shape-6'>Square</label>
+      <input
+        type='radio'
+        id='shape-7'
+        name='shape'
+        value='7'
+        checked={channelSettings['stepShape'] === 7}
+        onChange={(e) => handleUpdate('stepShape', 7)}
+      />
+      <label htmlFor='shape-7'>Random</label>
 
-        <hr />
+      <hr />
 
-        <RenderRatios />
-      </RowContainer>
-
-      <AddChainButton>+</AddChainButton>
-    </>
+      <RenderRatios />
+    </RowContainer>
   );
 };
 

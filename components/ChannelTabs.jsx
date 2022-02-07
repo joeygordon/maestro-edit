@@ -13,14 +13,15 @@ const ChannelTabsList = styled.ul`
   }
 
   button {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border: none;
     border-radius: 50%;
     background: #666666;
     font-style: italic;
     text-align: center;
-    font-size: 1em;
+    font-size: 0.85em;
+    font-weight: bold;
     cursor: pointer;
     transition: 0.25s;
 
@@ -29,6 +30,7 @@ const ChannelTabsList = styled.ul`
     }
 
     &.active {
+      border: 3px solid #dedede;
       background: #ffffff;
     }
   }

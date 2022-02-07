@@ -8,6 +8,7 @@ import GlobalSettings from '../components/GlobalSettings';
 import ExportButton from '../components/export/ExportButton';
 
 import defaultSettings from '../data/defaultSettings';
+import defaultChain from '../data/defaultChain';
 
 const GlobalContainer = styled.div`
   display: flex;
@@ -44,6 +45,19 @@ const Editor = () => {
     setCurrentSettings(newSettings);
   };
 
+  const handleAddChainStep = () => {
+    const currentChainArray = currentSettings.getIn([
+      activeTab.toString(),
+      'chains',
+    ]);
+
+    const newSettings = currentSettings.setIn(
+      [activeTab.toString(), 'chains'],
+      currentChainArray.push(defaultChain)
+    );
+    setCurrentSettings(newSettings);
+  };
+
   const handleGlobalSettingsUpdate = (setting, value) => {
     const newSettings = currentSettings.setIn(['global', setting], value);
     setCurrentSettings(newSettings);
@@ -70,6 +84,7 @@ const Editor = () => {
 
       <Settings
         handleSettingsUpdate={handleSettingsUpdate}
+        handleAddChainStep={handleAddChainStep}
         channelSettings={currentSettings.getIn([activeTab.toString()]).toJS()}
       />
     </>
