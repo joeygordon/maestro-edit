@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import ratios from '../../data/ratios';
+import shapes from '../../data/shapes';
 
 const RowContainer = styled.div`
   background: #292929;
@@ -10,7 +11,7 @@ const RowContainer = styled.div`
   margin-bottom: 2em;
 `;
 
-const SettingsRow = ({ channelSettings, handleSettingsUpdate }) => {
+const SettingsRow = ({ channelSettings, handleSettingsUpdate, chainIdx }) => {
   const [attenuationShift, setAttenuationShift] = useState(
     channelSettings['attenuationShift']
   );
@@ -27,6 +28,23 @@ const SettingsRow = ({ channelSettings, handleSettingsUpdate }) => {
     handleSettingsUpdate(setting, value);
   };
 
+  const ratio =
+    chainIdx > 0
+      ? channelSettings.chains[chainIdx]['stepRatioIdx']
+      : channelSettings['ratio'];
+
+  const smooth =
+    chainIdx > 0
+      ? channelSettings.chains[chainIdx]['stepSmooth']
+      : channelSettings['smooth'];
+
+  const bipolar =
+    chainIdx > 0
+      ? channelSettings.chains[chainIdx]['stepBipolar']
+      : channelSettings['bipolar'];
+
+  const shape = channelSettings.chains[chainIdx]['stepShape'];
+
   const RenderRatios = () => (
     <>
       {ratios.map((r) => {
@@ -34,13 +52,33 @@ const SettingsRow = ({ channelSettings, handleSettingsUpdate }) => {
           <React.Fragment key={r.id}>
             <input
               type='radio'
-              id={`ratio-${r.id}`}
+              id={`ratio-${r.id}-${chainIdx}`}
               name='ratio'
               value={r.id}
-              checked={channelSettings['ratio'] === r.id}
-              onChange={() => handleUpdate('ratio', r.id)}
+              checked={ratio === r.id}
+              onChange={() => handleUpdate('ratio', r.id, chainIdx)}
             />
-            <label htmlFor={`ratio-${r.id}`}>{r.title}</label>
+            <label htmlFor={`ratio-${r.id}-${chainIdx}`}>{r.title}</label>
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+
+  const RenderShapes = () => (
+    <>
+      {shapes.map((s) => {
+        return (
+          <React.Fragment key={s.id}>
+            <input
+              type='radio'
+              id={`shape-${s.id}-${chainIdx}`}
+              name='shape'
+              value={s.id}
+              checked={shape === s.id}
+              onChange={(e) => handleUpdate('stepShape', s.id, chainIdx)}
+            />
+            <label htmlFor={`shape-${s.id}-${chainIdx}`}>{s.title}</label>
           </React.Fragment>
         );
       })}
@@ -49,104 +87,40 @@ const SettingsRow = ({ channelSettings, handleSettingsUpdate }) => {
 
   return (
     <RowContainer>
+      {chainIdx}
       <input
         type='checkbox'
         id='mute'
         checked={channelSettings['mute'] === 1 ? true : false}
-        onChange={(cb) => handleUpdate('mute', cb.target.checked ? 1 : 0)}
+        onChange={(cb) =>
+          handleUpdate('mute', cb.target.checked ? 1 : 0, chainIdx)
+        }
       />
       <label htmlFor='mute'>Mute</label>
 
       <input
         type='checkbox'
-        id='smooth'
-        checked={channelSettings['smooth'] === 1 ? true : false}
-        onChange={(cb) => handleUpdate('smooth', cb.target.checked ? 1 : 0)}
+        id={`smooth-${chainIdx}`}
+        checked={smooth === 1 ? true : false}
+        onChange={(cb) =>
+          handleUpdate('smooth', cb.target.checked ? 1 : 0, chainIdx)
+        }
       />
-      <label htmlFor='smooth'>Smooth</label>
+      <label htmlFor={`smooth-${chainIdx}`}>Smooth</label>
 
       <input
         type='checkbox'
-        id='bipolar'
-        checked={channelSettings['bipolar'] === 1 ? true : false}
-        onChange={(cb) => handleUpdate('bipolar', cb.target.checked ? 1 : 0)}
+        id={`bipolar-${chainIdx}`}
+        checked={bipolar === 1 ? true : false}
+        onChange={(cb) =>
+          handleUpdate('bipolar', cb.target.checked ? 1 : 0, chainIdx)
+        }
       />
-      <label htmlFor='bipolar'>Bipolar</label>
+      <label htmlFor={`bipolar-${chainIdx}`}>Bipolar</label>
 
       <hr />
 
-      <input
-        type='radio'
-        id='shape-0'
-        name='shape'
-        value='0'
-        checked={channelSettings['stepShape'] === 0}
-        onChange={(e) => handleUpdate('stepShape', 0)}
-      />
-      <label htmlFor='shape-0'>Ramp Up</label>
-      <input
-        type='radio'
-        id='shape-1'
-        name='shape'
-        value='1'
-        checked={channelSettings['stepShape'] === 1}
-        onChange={(e) => handleUpdate('stepShape', 1)}
-      />
-      <label htmlFor='shape-1'>Ramp Down</label>
-      <input
-        type='radio'
-        id='shape-2'
-        name='shape'
-        value='2'
-        checked={channelSettings['stepShape'] === 2}
-        onChange={(e) => handleUpdate('stepShape', 2)}
-      />
-      <label htmlFor='shape-2'>High</label>
-      <input
-        type='radio'
-        id='shape-3'
-        name='shape'
-        value='3'
-        checked={channelSettings['stepShape'] === 3}
-        onChange={(e) => handleUpdate('stepShape', 3)}
-      />
-      <label htmlFor='shape-3'>Low</label>
-      <input
-        type='radio'
-        id='shape-4'
-        name='shape'
-        value='4'
-        checked={channelSettings['stepShape'] === 4}
-        onChange={(e) => handleUpdate('stepShape', 4)}
-      />
-      <label htmlFor='shape-4'>Triangle Up</label>
-      <input
-        type='radio'
-        id='shape-5'
-        name='shape'
-        value='5'
-        checked={channelSettings['stepShape'] === 5}
-        onChange={(e) => handleUpdate('stepShape', 5)}
-      />
-      <label htmlFor='shape-5'>Triangle Down</label>
-      <input
-        type='radio'
-        id='shape-6'
-        name='shape'
-        value='6'
-        checked={channelSettings['stepShape'] === 6}
-        onChange={(e) => handleUpdate('stepShape', 6)}
-      />
-      <label htmlFor='shape-6'>Square</label>
-      <input
-        type='radio'
-        id='shape-7'
-        name='shape'
-        value='7'
-        checked={channelSettings['stepShape'] === 7}
-        onChange={(e) => handleUpdate('stepShape', 7)}
-      />
-      <label htmlFor='shape-7'>Random</label>
+      <RenderShapes />
 
       <hr />
 

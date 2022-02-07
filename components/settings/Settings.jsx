@@ -33,7 +33,8 @@ const Settings = ({
     return channelSettings['chains'].map((step, i) => {
       return (
         <SettingsRow
-          key={i}
+          key={`chain-${i}`}
+          chainIdx={i}
           channelSettings={channelSettings}
           handleSettingsUpdate={handleSettingsUpdate}
         />

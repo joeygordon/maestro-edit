@@ -37,7 +37,7 @@ const Editor = () => {
     setActiveTab(tab);
   };
 
-  const handleSettingsUpdate = (setting, value) => {
+  const handleSettingsUpdate = (setting, value, chainIdx) => {
     const newSettings = currentSettings.setIn(
       [activeTab.toString(), setting],
       value
