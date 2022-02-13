@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import SettingsRow from './SettingsRow';
+import ChannelSettings from './ChannelSettings';
 
 const AddChainButton = styled.button`
   display: block;
@@ -44,8 +45,14 @@ const Settings = ({
 
   return (
     <>
+      <ChannelSettings
+        settings={channelSettings}
+        handleUpdate={handleSettingsUpdate}
+      />
       {renderSettingsRow()}
-      <AddChainButton onClick={handleAddChainStep}>+</AddChainButton>
+      {channelSettings['chains'].length < 32 ? (
+        <AddChainButton onClick={handleAddChainStep}>+</AddChainButton>
+      ) : null}
     </>
   );
 };

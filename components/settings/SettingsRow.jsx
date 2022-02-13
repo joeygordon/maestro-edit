@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import ChannelSettings from './ChannelSettings';
+import StepSettings from './StepSettings';
+
 import ratios from '../../data/ratios';
 import shapes from '../../data/shapes';
+import ShapeSelect from './ShapeSelect';
+import RatioSelect from './RatioSelect';
 
 const RowContainer = styled.div`
   background: #292929;
-  border-bottom: 3px solid #666666;
+  /* border-bottom: 3px solid #666666; */
   padding: 1em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 `;
 
 const SettingsRow = ({ channelSettings, handleSettingsUpdate, chainIdx }) => {
@@ -44,6 +49,16 @@ const SettingsRow = ({ channelSettings, handleSettingsUpdate, chainIdx }) => {
       : channelSettings['bipolar'];
 
   const shape = channelSettings.chains[chainIdx]['stepShape'];
+
+  const slow =
+    chainIdx > 0
+      ? channelSettings.chains[chainIdx]['slow']
+      : channelSettings['slow'];
+
+  const triplet =
+    chainIdx > 0
+      ? channelSettings.chains[chainIdx]['triplet']
+      : channelSettings['triplet'];
 
   const RenderRatios = () => (
     <>
@@ -87,17 +102,6 @@ const SettingsRow = ({ channelSettings, handleSettingsUpdate, chainIdx }) => {
 
   return (
     <RowContainer>
-      {chainIdx}
-      <input
-        type='checkbox'
-        id='mute'
-        checked={channelSettings['mute'] === 1 ? true : false}
-        onChange={(cb) =>
-          handleUpdate('mute', cb.target.checked ? 1 : 0, chainIdx)
-        }
-      />
-      <label htmlFor='mute'>Mute</label>
-
       <input
         type='checkbox'
         id={`smooth-${chainIdx}`}
@@ -118,13 +122,37 @@ const SettingsRow = ({ channelSettings, handleSettingsUpdate, chainIdx }) => {
       />
       <label htmlFor={`bipolar-${chainIdx}`}>Bipolar</label>
 
-      <hr />
+      <ShapeSelect
+        selectedShape={shape}
+        handleSelect={handleUpdate}
+        chainIdx={chainIdx}
+      />
 
-      <RenderShapes />
+      <RatioSelect
+        selectedRatio={ratio}
+        handleSelect={handleUpdate}
+        chainIdx={chainIdx}
+      />
 
-      <hr />
+      <input
+        type='checkbox'
+        id={`slow-${chainIdx}`}
+        checked={slow === 1 ? true : false}
+        onChange={(cb) =>
+          handleUpdate('slow', cb.target.checked ? 1 : 0, chainIdx)
+        }
+      />
+      <label htmlFor={`slow-${chainIdx}`}>Slow</label>
 
-      <RenderRatios />
+      <input
+        type='checkbox'
+        id={`triplet-${chainIdx}`}
+        checked={triplet === 1 ? true : false}
+        onChange={(cb) =>
+          handleUpdate('triplet', cb.target.checked ? 1 : 0, chainIdx)
+        }
+      />
+      <label htmlFor={`triplet-${chainIdx}`}>Triplet</label>
     </RowContainer>
   );
 };

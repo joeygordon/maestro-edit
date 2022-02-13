@@ -1,10 +1,12 @@
-export default [
+const options = [
   {
     id: 0,
-    title: "Smooth",
+    title: 'Smooth',
   },
   {
     id: 1,
-    title: "Bipolar",
+    title: 'Bipolar',
   },
 ];
+
+export default options;

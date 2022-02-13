@@ -1,6 +1,10 @@
 // mocked data. gotta make it real eventually
 const shapes = [
   {
+    id: -1,
+    title: 'Default',
+  },
+  {
     id: 0,
     title: 'Ramp Up',
   },
