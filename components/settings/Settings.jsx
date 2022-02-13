@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import SettingsRow from './SettingsRow';
+import StepSettings from './StepSettings';
 import ChannelSettings from './ChannelSettings';
 
 const AddChainButton = styled.button`
@@ -33,7 +33,7 @@ const Settings = ({
   const renderSettingsRow = () => {
     return channelSettings['chains'].map((step, i) => {
       return (
-        <SettingsRow
+        <StepSettings
           key={`chain-${i}`}
           chainIdx={i}
           channelSettings={channelSettings}

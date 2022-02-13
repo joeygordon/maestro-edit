@@ -20,7 +20,10 @@ const ChannelSettings = ({ settings, handleUpdate }) => {
       />
       <label htmlFor='mute'>Mute</label>
 
-      <AttenuationSelect handleSelect={handleUpdate} />
+      <AttenuationSelect
+        handleSelect={handleUpdate}
+        selectedAmount={settings['attenuationShift']}
+      />
     </ChannelSettingsContainer>
   );
 };
